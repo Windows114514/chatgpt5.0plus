@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT-5.0 PLUS</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .chat-app {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        #chatWindow {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .user-message {
+            background-color: #e6e6e6;
+            align-self: flex-start;
+        }
+
+        .bot-message {
+            background-color: #0097a7;
+            color: white;
+            align-self: flex-end;
+        }
+
+        #messageInput {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #0097a7;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .chat-app {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-app">
+        <h2>ChatGPT-5.0 PLUS</h2>
+        <div id="chatWindow">
+        </div>
+        <input type="text" id="messageInput" placeholder="在这里输入你的问题...">
+        <button onclick="sendMessage()">发送</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var message = document.getElementById('messageInput').value;
+            if (message.trim() !== '') {
+                var chatWindow = document.getElementById('chatWindow');
+                var userMessage = document.createElement('div');
+                userMessage.className = 'message user-message';
+                userMessage.textContent = '你: ' + message;
+                chatWindow.appendChild(userMessage);
+                setTimeout(function() {
+                    var botMessage = document.createElement('div');
+                    botMessage.className = 'message bot-message';
+                    botMessage.textContent = 'ChatGPT-5.0 PLUS: 确实';
+                    chatWindow.appendChild(botMessage);
+                    document.getElementById('messageInput').value = '';
+                    // 滚动到底部显示最新消息
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                }, 2000); // 延迟2秒
+            }
+        }
+    </script>
+</body>
+</html>
